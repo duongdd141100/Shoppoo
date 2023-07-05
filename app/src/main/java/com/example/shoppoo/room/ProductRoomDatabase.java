@@ -7,6 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.shoppoo.common.Constant;
 import com.example.shoppoo.common.Converters;
 import com.example.shoppoo.dao.ProductDAO;
 import com.example.shoppoo.entity.Product;
@@ -23,7 +24,7 @@ public abstract class ProductRoomDatabase extends  RoomDatabase {
         synchronized (RoomDatabase.class) {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(context,
-                                ProductRoomDatabase.class, "ProductDatabase")
+                                ProductRoomDatabase.class, Constant.DATABASE_NAME)
                         .fallbackToDestructiveMigration()
                         .allowMainThreadQueries()
                         .build();
