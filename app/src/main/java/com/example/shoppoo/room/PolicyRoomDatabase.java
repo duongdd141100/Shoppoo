@@ -7,6 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.shoppoo.common.Constant;
 import com.example.shoppoo.common.Converters;
 import com.example.shoppoo.dao.PolicyDAO;
 import com.example.shoppoo.entity.Policy;
@@ -23,7 +24,7 @@ public abstract class PolicyRoomDatabase extends RoleRoomDatabase {
         synchronized (RoomDatabase.class) {
             if (INSTANCE == null) {
                 INSTANCE = Room.databaseBuilder(context,
-                                PolicyRoomDatabase.class, "PolicyDatabase")
+                                PolicyRoomDatabase.class, Constant.DATABASE_NAME)
                         .fallbackToDestructiveMigration()
                         .allowMainThreadQueries()
                         .build();
