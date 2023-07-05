@@ -14,7 +14,7 @@ import com.example.shoppoo.entity.Policy;
 
 @Database(entities = {Policy.class}, version = 1)
 @TypeConverters({Converters.class})
-public abstract class PolicyRoomDatabase extends RoleRoomDatabase {
+public abstract class PolicyRoomDatabase extends RoomDatabase {
 
     public abstract PolicyDAO policyDAO();
 

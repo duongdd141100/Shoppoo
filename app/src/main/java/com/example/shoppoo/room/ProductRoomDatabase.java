@@ -14,7 +14,7 @@ import com.example.shoppoo.entity.Product;
 
 @Database(entities = Product.class, version = 1)
 @TypeConverters({Converters.class})
-public abstract class ProductRoomDatabase extends  RoomDatabase {
+public abstract class ProductRoomDatabase extends RoomDatabase {
 
     public abstract ProductDAO productDAO();
 
