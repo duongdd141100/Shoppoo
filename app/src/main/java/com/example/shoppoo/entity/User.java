@@ -1,7 +1,10 @@
 package com.example.shoppoo.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+
+import java.util.Date;
 
 @Entity(tableName = "tbl_user")
 public class User extends BaseEntity {
@@ -29,6 +32,19 @@ public class User extends BaseEntity {
 
     @ColumnInfo(name = "role")
     private String role;
+
+    public User(@NonNull Long id, String username, String fullname, Boolean gender, String address, String phoneNumber, String email, String password, String role,
+                Date createdDate, String createdBy, Date updatedDate, String updatedBy, Integer version) {
+        super(id, createdDate, createdBy, updatedDate, updatedBy, version);
+        this.username = username;
+        this.fullname = fullname;
+        this.gender = gender;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public String getUsername() {
         return username;

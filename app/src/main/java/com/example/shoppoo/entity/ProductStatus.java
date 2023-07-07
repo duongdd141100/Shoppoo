@@ -1,7 +1,10 @@
 package com.example.shoppoo.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+
+import java.util.Date;
 
 @Entity(tableName = "tbl_product_status")
 public class ProductStatus extends BaseEntity {
@@ -17,6 +20,15 @@ public class ProductStatus extends BaseEntity {
 
     @ColumnInfo(name = "status")
     private String status;
+
+    public ProductStatus(@NonNull Long id, String username, Long productId, Integer quantity, String status,
+                         Date createdDate, String createdBy, Date updatedDate, String updatedBy, Integer version) {
+        super(id, createdDate, createdBy, updatedDate, updatedBy, version);
+        this.username = username;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.status = status;
+    }
 
     public String getUsername() {
         return username;
