@@ -10,9 +10,9 @@ import androidx.room.TypeConverters;
 import com.example.shoppoo.common.Constant;
 import com.example.shoppoo.common.Converters;
 import com.example.shoppoo.dao.UserDAO;
-import com.example.shoppoo.entity.Shop;
+import com.example.shoppoo.entity.User;
 
-@Database(entities = Shop.class, version = 1)
+@Database(entities = User.class, version = 1)
 @TypeConverters({Converters.class})
 public abstract class UserRoomDatabase extends RoomDatabase {
 
