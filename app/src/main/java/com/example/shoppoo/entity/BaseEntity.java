@@ -8,6 +8,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class BaseEntity implements Serializable {
+    public BaseEntity(@NonNull Long id, Date createdDate, String createdBy, Date updatedDate, String updatedBy, Integer version) {
+        this.id = id;
+        this.createdDate = new Date();
+        this.createdBy = createdBy;
+        this.updatedDate = updatedDate;
+        this.updatedBy = updatedBy;
+        this.version = version;
+    }
+
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id", typeAffinity = 1, index = true)

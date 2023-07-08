@@ -1,7 +1,10 @@
 package com.example.shoppoo.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+
+import java.util.Date;
 
 @Entity(tableName = "tbl_shop")
 public class Shop extends BaseEntity {
@@ -23,6 +26,16 @@ public class Shop extends BaseEntity {
 
     @ColumnInfo(name = "description")
     private String description;
+
+    public Shop(@NonNull Long id, String name, String founder, Long categoryId, String address, Integer productCount, String description,
+                Date createdDate, String createdBy, Date updatedDate, String updatedBy, Integer version) {
+        super(id, createdDate, createdBy, updatedDate, updatedBy, version);
+        this.name = name;
+        this.founder = founder;
+        this.categoryId = categoryId;
+        this.productCount = productCount;
+        this.description = description;
+    }
 
     public String getName() {
         return name;
