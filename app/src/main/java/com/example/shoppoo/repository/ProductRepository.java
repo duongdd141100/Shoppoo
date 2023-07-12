@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.example.shoppoo.dao.ProductDAO;
 import com.example.shoppoo.entity.Product;
-import com.example.shoppoo.room.ProductRoomDatabase;
+import com.example.shoppoo.room.ShoppooRoomDatabase;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class ProductRepository {
     private ProductDAO productDAO;
 
     public ProductRepository(Context context) {
-        productDAO = ProductRoomDatabase.getInstance(context).productDAO();
+        productDAO = ShoppooRoomDatabase.getInstance(context).productDAO();
     }
 
     public void save(List<Product> products) {
