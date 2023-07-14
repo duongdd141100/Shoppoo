@@ -20,4 +20,7 @@ public class RoleRepository {
         roleDAO.insert(roles);
     }
 
+    public List<Role> findByIds(List<String> roleIds) {
+        return roleDAO.findByIds(roleIds);
+    }
 }
