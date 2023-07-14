@@ -20,4 +20,7 @@ public class ProductRepository {
         productDAO.insert(products);
     }
 
+    public List<Product> findAll() {
+        return productDAO.findAll();
+    }
 }

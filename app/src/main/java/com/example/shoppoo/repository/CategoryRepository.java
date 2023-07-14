@@ -20,4 +20,7 @@ public class CategoryRepository {
         categoryDAO.insert(categories);
     }
 
+    public List<Category> findAll() {
+        return categoryDAO.findAll();
+    }
 }
