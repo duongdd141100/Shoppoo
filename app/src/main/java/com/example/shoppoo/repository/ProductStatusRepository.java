@@ -20,4 +20,15 @@ public class ProductStatusRepository {
         productStatusDAO.insert(productStatusList);
     }
 
+    public List<ProductStatus> findByUsernameAnStatus(String username, String status) {
+        return productStatusDAO.findByUsernameAnStatus(username, status);
+    }
+
+    public void deleteByIds(List<String> productStatusSelectedIds) {
+        productStatusDAO.deleteByIds(productStatusSelectedIds);
+    }
+
+    public Long getTotalPriceByIds(List<String> productStatusSelectedIds) {
+        return productStatusDAO.getTotalPriceByIds(productStatusSelectedIds);
+    }
 }

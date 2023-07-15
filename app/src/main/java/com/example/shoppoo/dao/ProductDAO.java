@@ -17,4 +17,7 @@ public interface ProductDAO {
 
     @Query("SELECT * FROM tbl_product")
     List<Product> findAll();
+
+    @Query("SELECT * FROM tbl_product WHERE id = :id")
+    Product findById(Long id);
 }
