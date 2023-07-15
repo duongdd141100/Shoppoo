@@ -23,4 +23,8 @@ public class ProductRepository {
     public List<Product> findAll() {
         return productDAO.findAll();
     }
+
+    public Product findById(Long id) {
+        return productDAO.findById(id);
+    }
 }
