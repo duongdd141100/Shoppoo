@@ -20,4 +20,10 @@ public interface UserDAO {
 
     @Query("SELECT * FROM tbl_user WHERE username = :username")
     User findByUsername(String username);
+
+    @Query("UPDATE tbl_user SET fullname = :fullname, address = :address, phone_number = :phoneNumber, email = :email, gender = :gender WHERE id = :userId")
+    void updateUser(String fullname, String address, String phoneNumber, String email, boolean gender, long userId);
+
+    @Query("SELECT * FROM tbl_user WHERE id = :id")
+    User selectUserById(Long id);
 }

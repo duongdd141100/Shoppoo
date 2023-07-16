@@ -13,12 +13,15 @@
         android:theme="@style/Theme.Shoppoo"
         tools:targetApi="31">
         <activity
+            android:name=".EditInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".PolicyConfirmActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".HistoryBoughtActivity"
             android:exported="false"
