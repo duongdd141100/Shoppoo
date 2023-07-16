@@ -23,7 +23,6 @@ import com.example.shoppoo.entity.User;
 import com.example.shoppoo.repository.CategoryRepository;
 import com.example.shoppoo.repository.ProductRepository;
 import com.example.shoppoo.repository.RoleRepository;
-import com.example.shoppoo.repository.UserRepository;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -119,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
                             finish();
                             startActivity(getIntent());
                         }
+                        if (R.id.edit_policy == item.getItemId()) {
+                            Intent intent = new Intent(MainActivity.this, EditPolicyActivity.class);
+                            startActivity(intent);
+                        }
                         return false;
                     }
                 });
@@ -143,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
                         R.id.view_buyer));
         mapRolesWithMenuItems.put(Arrays.asList(Constant.BUYER_ROLE),
                 Arrays.asList(R.id.edit_policy,
-                        R.id.create_shop,
                         R.id.view_warehouse,
                         R.id.add_account,
                         R.id.view_category,
