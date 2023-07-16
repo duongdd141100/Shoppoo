@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Shoppoo"
         tools:targetApi="31">
         <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditInfoActivity"
             android:exported="false" />
         <activity

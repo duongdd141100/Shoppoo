@@ -26,4 +26,7 @@ public interface UserDAO {
 
     @Query("SELECT * FROM tbl_user WHERE id = :id")
     User selectUserById(Long id);
+
+    @Query("UPDATE tbl_user SET password = :password")
+    void changePassword(String password);
 }
