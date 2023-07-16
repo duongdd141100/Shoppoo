@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.shoppoo.R;
 import com.example.shoppoo.entity.Role;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EditPolicyImpl implements EditPolicyService, AdapterView.OnItemSelectedListener{
+public class EditPolicyImpl implements EditPolicyService, AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     private Context context;
 
@@ -34,6 +35,8 @@ public class EditPolicyImpl implements EditPolicyService, AdapterView.OnItemSele
 
     private List<Role> roles = new ArrayList<>();
 
+    private Integer roleSelectedPosition;
+
     public EditPolicyImpl(Context context, Spinner roleSpinner, EditText tvDescription, Button btnUpdate) {
         this.context = context;
         this.roleSpinner = roleSpinner;
@@ -41,6 +44,7 @@ public class EditPolicyImpl implements EditPolicyService, AdapterView.OnItemSele
         this.btnUpdate = btnUpdate;
         roleRepository = new RoleRepository(this.context);
         policyRepo = new PolicyRepository(this.context);
+        roleSelectedPosition = 0;
     }
 
     @Override
@@ -50,16 +54,32 @@ public class EditPolicyImpl implements EditPolicyService, AdapterView.OnItemSele
                 roles.stream().map(Role::getName).collect(Collectors.toList()));
         roleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         roleSpinner.setAdapter(roleAdapter);
+    }
+
+    @Override
+    public void handleItemSelected() {
         roleSpinner.setOnItemSelectedListener(this);
     }
 
     @Override
+    public void handleUpdate() {
+        btnUpdate.setOnClickListener(this);
+    }
+
+    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        roleSelectedPosition = position;
         tvDescription.setText(policyRepo.findByRoleId(roles.get(position).getId()).getDescription());
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        policyRepo.updateDescriptionByRoleId(roles.get(roleSelectedPosition).getId(), tvDescription.getText().toString());
+        Toast.makeText(context, "Update Successfully!", Toast.LENGTH_SHORT).show();
     }
 }
