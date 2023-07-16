@@ -122,6 +122,11 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, EditPolicyActivity.class);
                             startActivity(intent);
                         }
+                        if (R.id.history_bought == item.getItemId()) {
+                            Intent intent = new Intent(MainActivity.this, HistoryBoughtActivity.class);
+                            intent.putExtra("user", user);
+                            startActivity(intent);
+                        }
                         return false;
                     }
                 });
