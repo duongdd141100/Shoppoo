@@ -19,4 +19,7 @@ public interface PolicyDAO {
 
     @Query("UPDATE tbl_policy SET description = :description WHERE role_id = :roleId")
     void updateDescriptionByRoleId(Long roleId, String description);
+
+    @Query("SELECT * FROM tbl_policy")
+    List<Policy> findAll();
 }

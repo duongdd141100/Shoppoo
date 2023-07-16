@@ -27,4 +27,8 @@ public class PolicyRepository {
     public void updateDescriptionByRoleId(Long roleId, String description) {
         policyDAO.updateDescriptionByRoleId(roleId, description);
     }
+
+    public List<Policy> findAll() {
+        return policyDAO.findAll();
+    }
 }
