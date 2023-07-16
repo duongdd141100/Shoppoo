@@ -1,6 +1,7 @@
 package com.example.shoppoo.service.impl;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -43,6 +44,8 @@ public class PolicyConfirmServiceImpl implements PolicyConfirmService {
 
     @Override
     public void setTextForDescription() {
+        user = new User(5L, "duongdd_user", "Do Duc Duong", true, "HN", "0912345678",
+                "duongdd@gmail.com","1414", "2;3", null, null, null, null, null);
         List<Policy> policies = policyRepo.findAll();
         String policyDescription = String.join("\n\n", policies.stream()
                 .filter(x -> Arrays.stream(user.getRole().split(";")).collect(Collectors.toList()).contains(x.getRoleId().toString()))
@@ -53,7 +56,16 @@ public class PolicyConfirmServiceImpl implements PolicyConfirmService {
 
     @Override
     public void handleConfirmCheckbox() {
-
+        cbConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cbConfirm.isChecked()) {
+                    btnNext.setEnabled(true);
+                } else {
+                    btnNext.setEnabled(false);
+                }
+            }
+        });
     }
 
     @Override

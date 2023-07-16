@@ -35,5 +35,6 @@ public class PolicyConfirmActivity extends AppCompatActivity {
 
         PolicyConfirmService policyConfirmService = new PolicyConfirmServiceImpl(this, edDescription, cbConfirm, btnNext, user, shop);
         policyConfirmService.setTextForDescription();
+        policyConfirmService.handleConfirmCheckbox();
     }
 }
