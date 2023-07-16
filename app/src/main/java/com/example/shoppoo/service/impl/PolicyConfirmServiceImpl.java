@@ -10,6 +10,8 @@ import com.example.shoppoo.entity.Policy;
 import com.example.shoppoo.entity.Shop;
 import com.example.shoppoo.entity.User;
 import com.example.shoppoo.repository.PolicyRepository;
+import com.example.shoppoo.repository.ShopRepository;
+import com.example.shoppoo.repository.UserRepository;
 import com.example.shoppoo.service.PolicyConfirmService;
 
 import java.util.Arrays;
@@ -32,6 +34,10 @@ public class PolicyConfirmServiceImpl implements PolicyConfirmService {
 
     private PolicyRepository policyRepo;
 
+    private UserRepository userRepo;
+
+    private ShopRepository shopRepo;
+
     public PolicyConfirmServiceImpl(Context context, EditText edDescription, CheckBox cbConfirm, Button btnNext, User user, Shop shop) {
         this.context = context;
         this.edDescription = edDescription;
@@ -40,6 +46,8 @@ public class PolicyConfirmServiceImpl implements PolicyConfirmService {
         this.user = user;
         this.shop = shop;
         policyRepo = new PolicyRepository(this.context);
+        userRepo = new UserRepository(this.context);
+        shopRepo = new ShopRepository(this.context);
     }
 
     @Override
@@ -70,6 +78,9 @@ public class PolicyConfirmServiceImpl implements PolicyConfirmService {
 
     @Override
     public void handleNextButton() {
-
+        userRepo.save(Arrays.asList(user));
+        if (shop != null) {
+            shopRepo.save(Arrays.asList(shop));
+        }
     }
 }
