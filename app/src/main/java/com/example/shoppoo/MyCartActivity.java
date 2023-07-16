@@ -41,8 +41,6 @@ public class MyCartActivity extends AppCompatActivity implements MyCartListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_cart);
 
-        DataCommon.insertProductStatusD(this);
-
         productStatusRepo = new ProductStatusRepository(this);
         ((TextView) findViewById(R.id.tv_title)).setTypeface(null, Typeface.BOLD);
         Intent intent = getIntent();
