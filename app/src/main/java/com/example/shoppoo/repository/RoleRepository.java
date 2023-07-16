@@ -6,6 +6,7 @@ import com.example.shoppoo.dao.RoleDAO;
 import com.example.shoppoo.entity.Role;
 import com.example.shoppoo.room.ShoppooRoomDatabase;
 
+import java.util.Collection;
 import java.util.List;
 
 public class RoleRepository {
@@ -22,5 +23,9 @@ public class RoleRepository {
 
     public List<Role> findByIds(List<String> roleIds) {
         return roleDAO.findByIds(roleIds);
+    }
+
+    public List<Role> findAllOtherAdmin() {
+        return roleDAO.findAllOtherAdmin();
     }
 }

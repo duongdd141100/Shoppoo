@@ -16,4 +16,7 @@ public interface RoleDAO {
 
     @Query("SELECT * FROM tbl_role WHERE id IN (:roleIds)")
     List<Role> findByIds(List<String> roleIds);
+
+    @Query("SELECT * FROM tbl_role WHERE name != 'Admin'")
+    List<Role> findAllOtherAdmin();
 }
