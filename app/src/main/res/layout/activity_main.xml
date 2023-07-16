@@ -64,6 +64,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:gravity="center"
+            style="@style/textViewStyle"
             android:text="Home" />
 
         <TextView
@@ -75,6 +76,7 @@
             android:layout_toRightOf="@id/tv_home"
             android:textAlignment="center"
             android:gravity="center"
+            style="@style/textViewStyle"
             android:text="Login" />
 
         <TextView
@@ -85,6 +87,7 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:gravity="center"
+            style="@style/textViewStyle"
             android:text="..." />
     </LinearLayout>
 
