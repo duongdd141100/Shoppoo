@@ -20,4 +20,7 @@ public class UserRepository {
         userDAO.insert(users);
     }
 
+    public User findByUsername(String username) {
+        return userDAO.findByUsername(username);
+    }
 }

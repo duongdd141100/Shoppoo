@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        setTitle("Login");
         Button loginButton = findViewById(R.id.loginButton);
         userDAO = ShoppooRoomDatabase.getInstance(this).userDAO();
         loginButton.setOnClickListener(new View.OnClickListener() {

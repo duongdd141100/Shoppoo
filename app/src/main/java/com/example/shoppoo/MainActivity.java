@@ -23,6 +23,7 @@ import com.example.shoppoo.entity.User;
 import com.example.shoppoo.repository.CategoryRepository;
 import com.example.shoppoo.repository.ProductRepository;
 import com.example.shoppoo.repository.RoleRepository;
+import com.example.shoppoo.repository.UserRepository;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     private User user;
 
+    private UserRepository userRepo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,14 +51,20 @@ public class MainActivity extends AppCompatActivity {
         categoryRepo = new CategoryRepository(this);
         productRepo = new ProductRepository(this);
         roleRepo = new RoleRepository(this);
+        userRepo = new UserRepository(this);
 
         Intent intent = getIntent();
+        preferences = getSharedPreferences(Constant.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         if (intent != null) {
             user = (User) intent.getSerializableExtra("user");
             if (user != null) {
-                preferences = getSharedPreferences(Constant.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-                preferences.edit().putString("username", user.getUsername());
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("username", user.getUsername());
+                editor.commit();
             }
+        }
+        if (preferences.getString("username", "").length() > 0) {
+            user = userRepo.findByUsername(preferences.getString("username", ""));
         }
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
@@ -115,6 +124,9 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         if (R.id.logout == item.getItemId()) {
                             user = null;
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("username", "");
+                            editor.commit();
                             finish();
                             startActivity(getIntent());
                         }
@@ -179,7 +191,8 @@ public class MainActivity extends AppCompatActivity {
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: handle login click
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
         tvMenu.setOnClickListener(new View.OnClickListener() {
