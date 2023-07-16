@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         CategoryAdapter categoryAdapter = new CategoryAdapter(categoryRepo.findAll(), this);
         categoriesContainer.setAdapter(categoryAdapter);
 
-        RecyclerView.LayoutManager layoutManagerVertical = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, true);
+        RecyclerView.LayoutManager layoutManagerVertical = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         RecyclerView productsContainer = findViewById(R.id.product_container);
         productsContainer.setLayoutManager(layoutManagerVertical);
         ProductAdapter productAdapter = new ProductAdapter(productRepo.findAll(), this);
@@ -120,6 +120,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                         if (R.id.edit_policy == item.getItemId()) {
                             Intent intent = new Intent(MainActivity.this, EditPolicyActivity.class);
+                            startActivity(intent);
+                        }
+                        if (R.id.history_bought == item.getItemId()) {
+                            Intent intent = new Intent(MainActivity.this, HistoryBoughtActivity.class);
+                            intent.putExtra("user", user);
                             startActivity(intent);
                         }
                         return false;
