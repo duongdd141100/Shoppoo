@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.shoppoo.R;
 import com.example.shoppoo.entity.Role;
 import com.example.shoppoo.repository.RoleRepository;
 import com.example.shoppoo.service.EditPolicyService;
@@ -39,7 +40,7 @@ public class EditPolicyImpl implements EditPolicyService {
     @Override
     public void setRoleSpinnerValues() {
         roles.addAll(roleRepository.findAllOtherAdmin());
-        ArrayAdapter<String> roleAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item,
+        ArrayAdapter<String> roleAdapter = new ArrayAdapter<>(context, R.layout.spinner_item,
                 roles.stream().map(Role::getName).collect(Collectors.toList()));
         roleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         roleSpinner.setAdapter(roleAdapter);
