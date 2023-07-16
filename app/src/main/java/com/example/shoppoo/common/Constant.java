@@ -7,4 +7,6 @@ public class Constant {
     public static final String SELLER_ROLE = "Seller";
     public static final String BUYER_ROLE = "Buyer";
 
+    public static final String EDIT_POLICY_TITLE = "Edit Policy";
+
 }
