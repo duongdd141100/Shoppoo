@@ -20,4 +20,11 @@ public class PolicyRepository {
         policyDAO.insert(policies);
     }
 
+    public Policy findByRoleId(Long id) {
+        return policyDAO.findByRoleId(id);
+    }
+
+    public void updateDescriptionByRoleId(Long roleId, String description) {
+        policyDAO.updateDescriptionByRoleId(roleId, description);
+    }
 }
