@@ -42,7 +42,7 @@ public class PolicyConfirmActivity extends AppCompatActivity {
         shop = (Shop) intent.getSerializableExtra("shop");
         isSeller = intent.getBooleanExtra("isSeller", false);
 
-        PolicyConfirmService policyConfirmService = new PolicyConfirmServiceImpl(this, edDescription, cbConfirm, btnNext, user, shop);
+        PolicyConfirmService policyConfirmService = new PolicyConfirmServiceImpl(this, edDescription, cbConfirm, btnNext, user, shop, isSeller);
         policyConfirmService.setTextForDescription();
         policyConfirmService.handleConfirmCheckbox();
         policyConfirmService.handleNextButton();

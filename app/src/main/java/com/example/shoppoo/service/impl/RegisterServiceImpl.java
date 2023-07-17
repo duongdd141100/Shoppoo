@@ -20,6 +20,7 @@ import com.example.shoppoo.entity.Category;
 import com.example.shoppoo.entity.Shop;
 import com.example.shoppoo.entity.User;
 import com.example.shoppoo.repository.CategoryRepository;
+import com.example.shoppoo.repository.UserRepository;
 import com.example.shoppoo.service.RegisterService;
 
 import java.util.ArrayList;
@@ -51,6 +52,8 @@ public class RegisterServiceImpl implements RegisterService {
 
     private Shop shop;
 
+    private UserRepository userRepo;
+
     ActivityResultLauncher<Intent> startActivity;
 
     public RegisterServiceImpl(Context context, View userView, View shopView, Button btnRegister, User user, Shop shop, ActivityResultLauncher<Intent> startActivity) {
@@ -64,6 +67,7 @@ public class RegisterServiceImpl implements RegisterService {
                 R.id.et_email, R.id.et_username, R.id.et_password, R.id.et_retype));
         shopViewIds.addAll(Arrays.asList(R.id.et_shop_name, R.id.et_shop_address, R.id.et_description));
         categoryRepo = new CategoryRepository(this.context);
+        userRepo = new UserRepository(this.context);
         this.startActivity = startActivity;
     }
 
@@ -114,8 +118,17 @@ public class RegisterServiceImpl implements RegisterService {
                     Toast.makeText(context, "Please enter all shop information fields!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                String username = ((EditText)userView.findViewById(R.id.et_username)).getText().toString().toLowerCase();
+                if (username.contains(" ")) {
+                    Toast.makeText(context, "Username is not valid!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (userRepo.findByUsername(username) != null) {
+                    Toast.makeText(context, "Username is exist!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 user = new User(null,
-                        ((EditText)userView.findViewById(R.id.et_username)).getText().toString().trim(),
+                        username,
                         ((EditText)userView.findViewById(R.id.et_fullname)).getText().toString().trim(),
                         ((RadioButton) userView.findViewById(R.id.rb_male)).isChecked() ? true : false,
                         ((EditText)userView.findViewById(R.id.et_address)).getText().toString().trim(),
