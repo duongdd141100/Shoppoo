@@ -1,17 +1,24 @@
 package com.example.shoppoo.service.impl;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shoppoo.R;
+import com.example.shoppoo.common.Constant;
+import com.example.shoppoo.common.ProductStatusEnum;
 import com.example.shoppoo.entity.Product;
+import com.example.shoppoo.entity.ProductStatus;
 import com.example.shoppoo.entity.Shop;
 import com.example.shoppoo.repository.ProductRepository;
+import com.example.shoppoo.repository.ProductStatusRepository;
 import com.example.shoppoo.repository.ShopRepository;
 import com.example.shoppoo.service.ProductDetailService;
+
+import java.util.Arrays;
 
 public class ProductDetailServiceImpl implements ProductDetailService {
 
@@ -43,6 +50,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
     private Product product;
 
+    private ProductStatusRepository productStatusRepo;
+
     public ProductDetailServiceImpl(Context context, Long id, View view) {
         this.context = context;
         this.id = id;
@@ -57,14 +66,15 @@ public class ProductDetailServiceImpl implements ProductDetailService {
         tvShop = view.findViewById(R.id.tv_shop);
         productRepo = new ProductRepository(this.context);
         shopRepo = new ShopRepository(this.context);
+        productStatusRepo = new ProductStatusRepository(this.context);
     }
 
     @Override
     public void setProductInfo() {
         product = productRepo.findById(id);
-        Shop shop = shopRepo.findById(product.getId());
+        Shop shop = shopRepo.findById(product.getShopOwned());
         tvName.setText(product.getName());
-        tvPrice.setText("Price: $" + product.getPrice());
+        tvPrice.setText("Price: $ " + product.getPrice());
         tvQuantityValue.setText("0");
         tvTotal.setText("Total: $ 0");
         tvDescription.setText("Description: " + product.getDescription());
@@ -83,6 +93,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 }
                 quantity -= 1;
                 tvQuantityValue.setText(quantity.toString());
+                tvTotal.setText("Total: $ " + (product.getPrice() * quantity));
             }
         });
     }
@@ -99,6 +110,25 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 }
                 quantity += 1;
                 tvQuantityValue.setText(quantity.toString());
+                tvTotal.setText("Total: $ " + (product.getPrice() * quantity));
+            }
+        });
+    }
+
+    @Override
+    public void handleAddButton() {
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = context.getSharedPreferences(Constant.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+                String username = sharedPreferences.getString("username", "");
+                if (username.isEmpty()) {
+                    Toast.makeText(context, "Please login to use!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                productStatusRepo.save(Arrays.asList(new ProductStatus(null, username, product.getId(),Integer.parseInt(tvQuantityValue.getText().toString()),
+                        ProductStatusEnum.IN_CART.getKey(), null, null, null, null, 1)));
+                Toast.makeText(context, "Add product to your cart successfully!", Toast.LENGTH_SHORT).show();
             }
         });
     }

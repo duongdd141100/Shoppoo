@@ -6,4 +6,6 @@ public interface ProductDetailService {
     void handleMinusButton();
 
     void handlePlusButton();
+
+    void handleAddButton();
 }
