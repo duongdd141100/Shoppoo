@@ -129,6 +129,7 @@
                 android:layout_below="@+id/et_username"
                 android:layout_toRightOf="@id/tv_password"
                 style="@style/textViewStyle"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -143,6 +144,7 @@
                 android:id="@+id/et_retype"
                 android:layout_below="@+id/et_password"
                 android:layout_toRightOf="@id/tv_retype"
+                android:inputType="textPassword"
                 style="@style/textViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
