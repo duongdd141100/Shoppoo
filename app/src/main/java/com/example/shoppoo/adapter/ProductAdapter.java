@@ -1,6 +1,7 @@
 package com.example.shoppoo.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.shoppoo.ProductDetailActivity;
 import com.example.shoppoo.R;
 import com.example.shoppoo.entity.Product;
 
@@ -32,6 +34,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        holder.id = products.get(position).getId();
         holder.tvImage.setCompoundDrawablesWithIntrinsicBounds(R.drawable.product_icon, 0, 0, 0);
         holder.tvPrice.setText("$ " + products.get(position).getPrice().toString());
         holder.tvName.setText(products.get(position).getName());
@@ -44,6 +47,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     protected class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private Long id;
+
         private TextView tvImage;
         private TextView tvPrice;
         private TextView tvName;
@@ -54,11 +59,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             this.tvImage = itemView.findViewById(R.id.tv_image);
             this.tvPrice = itemView.findViewById(R.id.tv_price);
             this.tvName = itemView.findViewById(R.id.tv_name);
+            itemView.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View v) {
+            Intent intent = new Intent(context, ProductDetailActivity.class);
+            intent.putExtra("id", id);
+            context.startActivity(intent);
         }
     }
 }
