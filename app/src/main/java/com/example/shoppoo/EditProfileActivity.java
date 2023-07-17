@@ -12,15 +12,17 @@ import android.widget.Toast;
 
 import com.example.shoppoo.dao.UserDAO;
 import com.example.shoppoo.entity.User;
+import com.example.shoppoo.room.ShoppooRoomDatabase;
 
-public class EditInfoActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
     private User user;
     private UserDAO userDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_info);
+        setContentView(R.layout.activity_edit_profile);
+        userDAO = ShoppooRoomDatabase.getInstance(this).userDAO();
         Intent intent = getIntent();
         EditText fullName = findViewById(R.id.fullname);
         EditText address = findViewById(R.id.address);
@@ -56,10 +58,10 @@ public class EditInfoActivity extends AppCompatActivity {
                         user1.getPhoneNumber().equals(user.getPhoneNumber()) &&
                         user1.getEmail().equals(user.getEmail()) &&
                         user1.getGender() == (user.getGender())) {
-                    Intent intent = new Intent(EditInfoActivity.this, MainActivity.class);
+                    Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
                     intent.putExtra("user",user1);
                     startActivity(intent);
-                }else Toast.makeText(EditInfoActivity.this, "Update fail", Toast.LENGTH_SHORT).show();
+                }else Toast.makeText(EditProfileActivity.this, "Update fail", Toast.LENGTH_SHORT).show();
             }
         });
     }

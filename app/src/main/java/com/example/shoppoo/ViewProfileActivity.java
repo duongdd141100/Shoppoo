@@ -11,8 +11,9 @@ import android.widget.RadioButton;
 
 import com.example.shoppoo.dao.UserDAO;
 import com.example.shoppoo.entity.User;
+import com.example.shoppoo.room.ShoppooRoomDatabase;
 
-public class ViewInfoActivity extends AppCompatActivity {
+public class ViewProfileActivity extends AppCompatActivity {
 
     private User user;
     private UserDAO userDAO;
@@ -20,7 +21,8 @@ public class ViewInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_info);
+        setContentView(R.layout.activity_view_profile);
+        userDAO = ShoppooRoomDatabase.getInstance(this).userDAO();
         Intent intent = getIntent();
         EditText userName = findViewById(R.id.username);
         EditText fullName = findViewById(R.id.fullname);
@@ -40,11 +42,11 @@ public class ViewInfoActivity extends AppCompatActivity {
                 male.setChecked(true);
             }else female.setChecked(true);
         }
-        Button ok =findViewById(R.id.okButton);
-        ok.setOnClickListener(new View.OnClickListener() {
+        Button edit =findViewById(R.id.edit_profileButton);
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ViewInfoActivity.this, MainActivity.class);
+                Intent intent = new Intent(ViewProfileActivity.this, EditProfileActivity.class);
                 intent.putExtra("user",user);
                 startActivity(intent);
             }

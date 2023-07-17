@@ -13,16 +13,19 @@
         android:theme="@style/Theme.Shoppoo"
         tools:targetApi="31">
         <activity
+            android:name=".ListShopActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChangeRoleForAdmin"
             android:exported="false" />
         <activity
-            android:name=".ViewInfoActivity"
+            android:name=".ViewProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ChangePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".EditInfoActivity"
+            android:name=".EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".PolicyConfirmActivity"

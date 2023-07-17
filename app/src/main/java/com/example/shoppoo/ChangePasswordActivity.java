@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.shoppoo.dao.UserDAO;
 import com.example.shoppoo.entity.User;
+import com.example.shoppoo.room.ShoppooRoomDatabase;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+        userDAO = ShoppooRoomDatabase.getInstance(this).userDAO();
         Intent intent = getIntent();
         EditText oldPassword = findViewById(R.id.oldpassword);
         EditText newPassword = findViewById(R.id.newpassword);
@@ -31,8 +33,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (oldPassword.getText().toString().equals(user.getPassword()) ||
-                    newPassword.getText().toString().equals(cfNewPassword.getText().toString())) {
+                if (!oldPassword.getText().toString().equals(user.getPassword()) ||
+                    !newPassword.getText().toString().equals(cfNewPassword.getText().toString())) {
                     Toast.makeText(ChangePasswordActivity.this, "Update fail", Toast.LENGTH_SHORT).show();
                 }else {
                     userDAO.changePassword(newPassword.getText().toString(),user.getId());

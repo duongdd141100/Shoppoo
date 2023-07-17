@@ -139,6 +139,21 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("user", user);
                             startActivity(intent);
                         }
+                        if (R.id.change_password == item.getItemId()) {
+                            Intent intent = new Intent(MainActivity.this, ChangePasswordActivity.class);
+                            intent.putExtra("user",user);
+                            startActivity(intent);
+                        }
+                        if (R.id.change_role_admin == item.getItemId()) {
+                            Intent intent = new Intent(MainActivity.this, ChangeRoleForAdmin.class);
+                            intent.putExtra("user",user);
+                            startActivity(intent);
+                        }
+                        if (R.id.view_profile == item.getItemId()) {
+                            Intent intent = new Intent(MainActivity.this, ViewProfileActivity.class);
+                            intent.putExtra("user",user);
+                            startActivity(intent);
+                        }
                         return false;
                     }
                 });
@@ -160,7 +175,8 @@ public class MainActivity extends AppCompatActivity {
                         R.id.view_category,
                         R.id.view_role,
                         R.id.view_shop,
-                        R.id.view_buyer));
+                        R.id.view_buyer,
+                        R.id.change_role_admin));
         mapRolesWithMenuItems.put(Arrays.asList(Constant.BUYER_ROLE),
                 Arrays.asList(R.id.edit_policy,
                         R.id.view_warehouse,
@@ -168,14 +184,16 @@ public class MainActivity extends AppCompatActivity {
                         R.id.view_category,
                         R.id.view_role,
                         R.id.view_shop,
-                        R.id.view_buyer));
+                        R.id.view_buyer,
+                        R.id.change_role_admin));
         mapRolesWithMenuItems.put(Arrays.asList(Constant.BUYER_ROLE, Constant.SELLER_ROLE),
                 Arrays.asList(R.id.edit_policy,
                         R.id.add_account,
                         R.id.view_category,
                         R.id.view_role,
                         R.id.view_shop,
-                        R.id.view_buyer));
+                        R.id.view_buyer,
+                        R.id.change_role_admin));
         return mapRolesWithMenuItems;
     }
 

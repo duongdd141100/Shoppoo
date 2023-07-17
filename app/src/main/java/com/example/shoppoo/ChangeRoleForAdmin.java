@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.shoppoo.dao.UserDAO;
 import com.example.shoppoo.entity.User;
+import com.example.shoppoo.room.ShoppooRoomDatabase;
 
 public class ChangeRoleForAdmin extends AppCompatActivity {
 
@@ -20,6 +21,7 @@ public class ChangeRoleForAdmin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_role_for_admin);
+        userDAO = ShoppooRoomDatabase.getInstance(this).userDAO();
         EditText userName = findViewById(R.id.username);
         Button save =findViewById(R.id.saveButton);
         save.setOnClickListener(new View.OnClickListener() {

@@ -47,6 +47,10 @@
         android:orderInCategory="110"
         android:title="View Buyer" />
     <item
+        android:id="@+id/change_role_admin"
+        android:orderInCategory="110"
+        android:title="Change role admin" />
+    <item
         android:id="@+id/logout"
         android:orderInCategory="120"
         android:title="Logout" />
