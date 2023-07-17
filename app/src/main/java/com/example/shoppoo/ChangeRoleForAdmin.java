@@ -26,7 +26,7 @@ public class ChangeRoleForAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 User user = userDAO.selectUserByUsername(userName.getText().toString());
-                if (user!=null) {
+                if (user != null) {
                     userDAO.changeRoleforAdminByUsername(user.getUsername());
                     user = userDAO.selectUserById(user.getId());
                     Intent intent = new Intent(ChangeRoleForAdmin.this, MainActivity.class);
