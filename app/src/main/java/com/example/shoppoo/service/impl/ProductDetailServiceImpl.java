@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shoppoo.R;
 import com.example.shoppoo.entity.Product;
@@ -40,6 +41,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
     private ShopRepository shopRepo;
 
+    private Product product;
+
     public ProductDetailServiceImpl(Context context, Long id, View view) {
         this.context = context;
         this.id = id;
@@ -58,7 +61,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
     @Override
     public void setProductInfo() {
-        Product product = productRepo.findById(id);
+        product = productRepo.findById(id);
         Shop shop = shopRepo.findById(product.getId());
         tvName.setText(product.getName());
         tvPrice.setText("Price: $" + product.getPrice());
@@ -66,5 +69,37 @@ public class ProductDetailServiceImpl implements ProductDetailService {
         tvTotal.setText("Total: $ 0");
         tvDescription.setText("Description: " + product.getDescription());
         tvShop.setText("Shop: " + shop.getName());
+    }
+
+    @Override
+    public void handleMinusButton() {
+        btnMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer quantity = Integer.parseInt(tvQuantityValue.getText().toString());
+                if (quantity == 0) {
+                    Toast.makeText(context, "Quantity cannot less than 0", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                quantity -= 1;
+                tvQuantityValue.setText(quantity.toString());
+            }
+        });
+    }
+
+    @Override
+    public void handlePlusButton() {
+        btnPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer quantity = Integer.parseInt(tvQuantityValue.getText().toString());
+                if (quantity == product.getQuantity()) {
+                    Toast.makeText(context, "This product has no more", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                quantity += 1;
+                tvQuantityValue.setText(quantity.toString());
+            }
+        });
     }
 }

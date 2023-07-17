@@ -35,6 +35,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         ProductDetailService productDetailService = new ProductDetailServiceImpl(this, id, mainLayout);
         productDetailService.setProductInfo();
+        productDetailService.handleMinusButton();
+        productDetailService.handlePlusButton();
 
     }
 
