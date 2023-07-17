@@ -153,7 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/textViewStyle"
-                android:text="Shop: "/>
+                android:text="Seller: "/>
             <CheckBox
                 android:id="@+id/cb_shop"
                 android:layout_below="@+id/et_retype"
@@ -200,14 +200,14 @@
 
         <TextView
             android:id="@+id/tv_shop_address"
-            android:layout_below="@+id/tv_category"
+            android:layout_below="@+id/spinner_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/textViewStyle"
             android:text="Shop Address: "/>
         <EditText
             android:id="@+id/et_shop_address"
-            android:layout_below="@+id/tv_category"
+            android:layout_below="@+id/spinner_category"
             android:layout_toRightOf="@id/tv_shop_address"
             style="@style/textViewStyle"
             android:layout_width="match_parent"

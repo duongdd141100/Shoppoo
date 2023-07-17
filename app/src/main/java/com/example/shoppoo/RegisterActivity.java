@@ -31,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         shopView.setVisibility(View.GONE);
 
         RegisterService registerService = new RegisterServiceImpl(this, userView, shopView, btnRegister);
+        registerService.setCategorySpinnerValues();
         registerService.handleShopChecked();
     }
 }
