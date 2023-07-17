@@ -20,4 +20,7 @@ public class ShopRepository {
         shopDAO.insert(shops);
     }
 
+    public Shop findById(Long id) {
+        return shopDAO.findById(id);
+    }
 }
