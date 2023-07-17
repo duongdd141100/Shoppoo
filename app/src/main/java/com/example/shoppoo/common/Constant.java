@@ -9,4 +9,5 @@ public class Constant {
     public static final String EDIT_POLICY_TITLE = "Edit Policy";
     public static final String HISTORY_BOUGHT_TITLE = "History Bought";
 
+    public static final String REGISTER_TITLE = "Register";
 }
