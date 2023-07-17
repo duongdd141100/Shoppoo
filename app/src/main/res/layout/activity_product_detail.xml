@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/product_image"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             tools:srcCompat="@tools:sample/avatars" />
@@ -54,6 +54,7 @@
                 android:layout_height="match_parent"
                 android:text="-"
                 android:textColor="@color/white"
+                android:textSize="25dp"
                 android:background="@drawable/oval_red_button" />
             <TextView
                 android:id="@+id/tv_quantity_value"
@@ -63,13 +64,14 @@
                 android:gravity="center"
                 android:paddingRight="10dp"
                 android:paddingLeft="10dp"
-                android:text="5" />
+                android:text="0" />
             <Button
                 android:id="@+id/btn_plus"
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
                 android:text="+"
                 android:textColor="@color/white"
+                android:textSize="25dp"
                 android:background="@drawable/oval_green_button" />
         </LinearLayout>
 
@@ -101,5 +103,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/base_button"
-        android:text="Button" />
+        android:text="Add to cart" />
 </LinearLayout>

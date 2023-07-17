@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.shoppoo.ProductDetailActivity;
 import com.example.shoppoo.R;
 import com.example.shoppoo.entity.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -35,7 +37,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         holder.id = products.get(position).getId();
-        holder.tvImage.setCompoundDrawablesWithIntrinsicBounds(R.drawable.product_icon, 0, 0, 0);
+        Picasso.with(context).load("error").error(R.drawable.product_icon).placeholder(R.drawable.product_icon).into(holder.tvImage);
         holder.tvPrice.setText("$ " + products.get(position).getPrice().toString());
         holder.tvName.setText(products.get(position).getName());
     }
@@ -49,7 +51,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         private Long id;
 
-        private TextView tvImage;
+        private ImageView tvImage;
         private TextView tvPrice;
         private TextView tvName;
         private ProductAdapter adapter;
