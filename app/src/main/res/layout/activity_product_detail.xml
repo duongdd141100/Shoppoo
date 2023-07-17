@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
+    android:id="@+id/activity_product_detail"
     tools:context=".ProductDetailActivity">
 
     <LinearLayout
@@ -99,7 +100,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/base_button"
