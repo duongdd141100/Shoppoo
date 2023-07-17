@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Shoppoo"
         tools:targetApi="31">
         <activity
+            android:name=".ChangeRoleForAdmin"
+            android:exported="false" />
+        <activity
             android:name=".ViewInfoActivity"
             android:exported="false" />
         <activity
