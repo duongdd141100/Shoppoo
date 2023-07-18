@@ -38,7 +38,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     Toast.makeText(ChangePasswordActivity.this, "Update fail", Toast.LENGTH_SHORT).show();
                 }else {
                     userDAO.changePassword(newPassword.getText().toString(),user.getId());
-                    user = userDAO.selectUserById(user.getId());
+                    user.setPassword(newPassword.getText().toString());
                     Intent intent = new Intent(ChangePasswordActivity.this, MainActivity.class);
                     intent.putExtra("user",user);
                     startActivity(intent);
