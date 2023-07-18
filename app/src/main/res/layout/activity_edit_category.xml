@@ -22,7 +22,7 @@
 
     <Button
         android:id="@+id/buttonAddCategory"
-        android:text="Add Category"
+        android:text="Edit Category"
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
