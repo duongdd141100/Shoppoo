@@ -35,4 +35,7 @@ public interface UserDAO {
 
     @Query("UPDATE tbl_user SET role = 1 Where username = :userName ")
     void changeRoleforAdminByUsername(String userName);
+
+    @Query("SELECT * FROM tbl_user WHERE role LIKE '%3%'")
+    List<User> selectAllBuyer();
 }

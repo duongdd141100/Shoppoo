@@ -154,6 +154,16 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("user",user);
                             startActivity(intent);
                         }
+                        if (R.id.view_shop == item.getItemId()) {
+                            Intent intent = new Intent(MainActivity.this, ListShopActivity.class);
+                            intent.putExtra("user",user);
+                            startActivity(intent);
+                        }
+                        if (R.id.view_buyer == item.getItemId()) {
+                            Intent intent = new Intent(MainActivity.this, ListBuyerActivity.class);
+                            intent.putExtra("user",user);
+                            startActivity(intent);
+                        }
                         return false;
                     }
                 });
