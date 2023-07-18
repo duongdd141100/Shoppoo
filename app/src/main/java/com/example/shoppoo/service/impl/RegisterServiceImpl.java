@@ -17,9 +17,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import com.example.shoppoo.PolicyConfirmActivity;
 import com.example.shoppoo.R;
 import com.example.shoppoo.entity.Category;
+import com.example.shoppoo.entity.Role;
 import com.example.shoppoo.entity.Shop;
 import com.example.shoppoo.entity.User;
 import com.example.shoppoo.repository.CategoryRepository;
+import com.example.shoppoo.repository.RoleRepository;
 import com.example.shoppoo.repository.UserRepository;
 import com.example.shoppoo.service.RegisterService;
 
@@ -54,6 +56,8 @@ public class RegisterServiceImpl implements RegisterService {
 
     private UserRepository userRepo;
 
+    private RoleRepository roleRepo;
+
     ActivityResultLauncher<Intent> startActivity;
 
     public RegisterServiceImpl(Context context, View userView, View shopView, Button btnRegister, User user, Shop shop, ActivityResultLauncher<Intent> startActivity) {
@@ -68,6 +72,7 @@ public class RegisterServiceImpl implements RegisterService {
         shopViewIds.addAll(Arrays.asList(R.id.et_shop_name, R.id.et_shop_address, R.id.et_description));
         categoryRepo = new CategoryRepository(this.context);
         userRepo = new UserRepository(this.context);
+        this.roleRepo = new RoleRepository(this.context);
         this.startActivity = startActivity;
     }
 
@@ -118,7 +123,7 @@ public class RegisterServiceImpl implements RegisterService {
                     Toast.makeText(context, "Please enter all shop information fields!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                String username = ((EditText)userView.findViewById(R.id.et_username)).getText().toString().toLowerCase();
+                String username = ((EditText)userView.findViewById(R.id.et_username)).getText().toString().toLowerCase().trim();
                 if (username.contains(" ")) {
                     Toast.makeText(context, "Username is not valid!", Toast.LENGTH_SHORT).show();
                     return;
@@ -145,6 +150,9 @@ public class RegisterServiceImpl implements RegisterService {
                             0,
                             ((EditText)shopView.findViewById(R.id.et_description)).getText().toString().trim(),
                             null, null, null, null, 1);
+                    user.setRole(roleRepo.findAllOtherAdmin().stream().map(x -> x.getId().toString()).collect(Collectors.joining(";")));
+                } else {
+                    user.setRole(roleRepo.findByName("Buyer").getId().toString());
                 }
                 Intent intent = new Intent(context, PolicyConfirmActivity.class);
                 intent.putExtra("user", user);

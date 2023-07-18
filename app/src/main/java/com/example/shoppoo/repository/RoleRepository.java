@@ -28,4 +28,8 @@ public class RoleRepository {
     public List<Role> findAllOtherAdmin() {
         return roleDAO.findAllOtherAdmin();
     }
+
+    public Role findByName(String roleName) {
+        return roleDAO.findByName(roleName);
+    }
 }

@@ -19,4 +19,7 @@ public interface RoleDAO {
 
     @Query("SELECT * FROM tbl_role WHERE name != 'Admin'")
     List<Role> findAllOtherAdmin();
+
+    @Query("SELECT * FROM tbl_role WHERE name == :roleName")
+    Role findByName(String roleName);
 }
