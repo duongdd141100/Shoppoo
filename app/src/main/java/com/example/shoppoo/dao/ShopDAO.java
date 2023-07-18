@@ -14,6 +14,11 @@ public interface ShopDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(List<Shop> shops);
 
+
     @Query("Select * from tbl_shop")
     List<Shop> selectAllShop();
+
+    @Query("SELECT * FROM tbl_shop WHERE id = :id")
+    Shop findById(Long id);
+
 }

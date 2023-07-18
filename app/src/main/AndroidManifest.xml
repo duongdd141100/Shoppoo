@@ -29,10 +29,20 @@
             android:exported="false" />
         <activity
             android:name=".EditProfileActivity"
-            android:exported="false" />
+            android:exported="false" 
+            android:parentActivityName=".ViewProfileActivity"/>
+        <activity
+            android:name=".ProductDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".PolicyConfirmActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".RegisterActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="false"

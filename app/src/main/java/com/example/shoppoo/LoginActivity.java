@@ -13,8 +13,6 @@ import com.example.shoppoo.dao.UserDAO;
 import com.example.shoppoo.entity.User;
 import com.example.shoppoo.room.ShoppooRoomDatabase;
 
-import java.util.List;
-
 public class LoginActivity extends AppCompatActivity {
     UserDAO userDAO;
     @Override
@@ -42,6 +40,13 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                 }
+            }
+        });
+        findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }

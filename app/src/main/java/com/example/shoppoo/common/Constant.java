@@ -8,5 +8,6 @@ public class Constant {
     public static final String BUYER_ROLE = "Buyer";
     public static final String EDIT_POLICY_TITLE = "Edit Policy";
     public static final String HISTORY_BOUGHT_TITLE = "History Bought";
-
+    public static final String REGISTER_TITLE = "Register";
+    public static final String PRODUCT_DETAIL_TITLE = "Product Detail";
 }
