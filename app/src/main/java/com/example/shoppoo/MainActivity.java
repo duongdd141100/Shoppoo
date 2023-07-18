@@ -170,6 +170,14 @@ public class MainActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
+        findViewById(R.id.tv_login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ViewProfileActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
     }
 
     private HashMap<List<String>, List<Integer>> createMapRolesWithMenuItems() {
